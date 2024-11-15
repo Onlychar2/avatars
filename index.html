@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creadora de Avatares Vtubers 3D. Crea tu avatar personalizado y destaca en el mundo del streaming.">
+    <title>Avatares Vtubers 3D - Personaliza tu Avatar</title>
+
+    <!-- Fuente de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Reset de estilo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body y fuentes */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Encabezado */
+        header {
+            background: url('https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/f0676901b64a8bd836dea1a38c5c02bf555ebf98') no-repeat center center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Filtro oscuro sobre el fondo */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Filtro oscuro */
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sección de Trabajos Realizados */
+        #portfolio {
+            background-color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        #portfolio h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .portfolio-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item .description {
+            padding: 15px;
+            background-color: #1f2a44;
+            color: white;
+            text-align: center;
+        }
+
+        .portfolio-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-item p {
+            font-size: 16px;
+        }
+
+        /* Sección de Planes y Ofertas */
+        #plans {
+            background-color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        #plans h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .plan-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .plan-box {
+            background-color: #fff;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .plan-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-box h3 {
+            font-size: 28px;
+            color: #1f2a44;
+            margin-bottom: 20px;
+        }
+
+        .plan-box p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .plan-box .price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .plan-box .btn {
+            background-color: #f39c12;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .plan-box .btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Sección de Características */
+        #features {
+            background-color: #ecf0f1;
+            padding: 80px 0;
+        }
+
+        #features h2 {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .features-list {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature-box {
+            background-color: #fff;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box i {
+            font-size: 40px;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h4 {
+            font-size: 22px;
+            color: #1f2a44;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #1f2a44;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            color: #e67e22;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .plan-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .plan-box {
+                width: 80%;
+                margin: 20px 0;
+            }
+
+            .features-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-box {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+
+            .portfolio-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            #plans h2 {
+                font-size: 32px;
+            }
+
+            .plan-box h3 {
+                font-size: 24px;
+            }
+
+            .plan-box .price {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="container">
+            <h1>Avatares Vtubers 3D</h1>
+            <p>Crea tu avatar personalizado y comienza tu aventura en el mundo del streaming con un avatar único. ¡Te ayudamos a destacar!</p>
+        </div>
+    </header>
+
+    <!-- Sección de Trabajos Realizados -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Trabajos Realizados</h2>
+            <div class="portfolio-gallery">
+                <div class="portfolio-item">
+                    <img src="https://th.bing.com/th/id/R.fcd1ddf58291557a7095375137f0b77b?rik=8dDtNNEp4Kwt7Q&pid=ImgRaw&r=0" alt="Avatar 1">
+                    <div class="description">
+                        <h3>Avatar Estilo Anime</h3>
+                        <p>Diseño personalizado para un streamer de juegos.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://i.etsystatic.com/32108443/r/il/f5116e/4279839607/il_fullxfull.4279839607_t6vr.jpg" alt="Avatar 2">
+                    <div class="description">
+                        <h3>Avatar Futurista</h3>
+                        <p>Avatar 3D con estilo futurista y animaciones avanzadas.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://media.sellfy.com/images/ysXtdSsO/h5RO/BIBI_BIG_COVER_UN-01.png" alt="Avatar 3">
+                    <div class="description">
+                        <h3>Avatar Fantasía</h3>
+                        <p>Un avatar inspirada en un mundo de fantasía y magia.</p>
+                    </div>
+                </div>
+                <!-- Más trabajos -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Planes y Ofertas -->
+    <section id="plans">
+        <div class="container">
+            <h2>Planes y Precios</h2>
+            <div class="plan-container">
+                <div class="plan-box">
+                    <h3>Plan Básico</h3>
+                    <p>Perfecto para quienes inician en el mundo de los avatares 3D.</p>
+                    <div class="price">$300 USD</div>
+                    <ul>
+                        <li>Avatar Básico 3D</li>
+                        <li>Personalización de características básicas</li>
+                        <li>Sin animaciones complejas</li>
+                    </ul>
+                    <a href="#contact" class="btn">Contratar</a>
+                </div>
+
+                <div class="plan-box">
+                    <h3>Plan Intermedio</h3>
+                    <p>Ideal para quienes quieren un avatar más completo y con algunas animaciones.</p>
+                    <div class="price">$500 USD</div>
+                    <ul>
+                        <li>Avatar 3D detallado</li>
+                        <li>Personalización avanzada</li>
+                        <li>Animaciones básicas</li>
+                    </ul>
+                    <a href="#contact" class="btn">Contratar</a>
+                </div>
+
+                <div class="plan-box">
+                    <h3>Plan Premium</h3>
+                    <p>El plan más completo para creadores que desean un avatar profesional y con animaciones avanzadas.</p>
+                    <div class="price">$800 USD</div>
+                    <ul>
+                        <li>Avatar 3D completamente personalizado</li>
+                        <li>Animaciones avanzadas</li>
+                        <li>Integración en software de streaming</li>
+                    </ul>
+                    <a href="#contact" class="btn">Contratar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Características -->
+    <section id="features">
+        <div class="container">
+            <h2>Características del Servicio</h2>
+            <div class="features-list">
+                <div class="feature-box">
+                    <i class="fas fa-cogs"></i>
+                    <h4>Personalización Completa</h4>
+                    <p>Tu avatar será único y diseñado según tus preferencias y estilo.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-headset"></i>
+                    <h4>Soporte 24/7</h4>
+                    <p>Estamos aquí para ayudarte con cualquier duda o ajuste en tu avatar.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-video"></i>
+                    <h4>Animaciones y Expresiones</h4>
+                    <p>Ofrecemos animaciones de alta calidad para que tu avatar cobre vida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Creadora de Avatares Vtubers 3D. Todos los derechos reservados. <br> <a href="mailto:contacto@vtuber.com">contacto@vtuber.com</a></p>
+    </footer>
+
+</body>
+
+</html>
